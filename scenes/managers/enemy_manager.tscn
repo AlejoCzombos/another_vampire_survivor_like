@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cat1e8qi14qew"]
+
+[ext_resource type="Script" uid="uid://byjt8ab1mr1lr" path="res://scenes/managers/enemy_manager.gd" id="1_tfsap"]
+[ext_resource type="PackedScene" uid="uid://bw75pk5py0dfs" path="res://entities/experiences/experience_coin.tscn" id="2_t8wtq"]
+
+[node name="EnemyManager" type="Node"]
+script = ExtResource("1_tfsap")
+experience_coin = ExtResource("2_t8wtq")

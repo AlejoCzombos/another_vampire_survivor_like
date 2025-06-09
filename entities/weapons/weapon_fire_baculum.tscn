@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsd4dwkfg4y7d"]
+
+[ext_resource type="PackedScene" uid="uid://cwkrtmxcbmjj" path="res://entities/weapons/weapon_base.tscn" id="1_3aycv"]
+[ext_resource type="Script" uid="uid://cka2wumao1eqy" path="res://entities/weapons/weapon_fire_baculum.gd" id="2_163bx"]
+
+[node name="FireBaculum" instance=ExtResource("1_3aycv")]
+script = ExtResource("2_163bx")
+projectile = null

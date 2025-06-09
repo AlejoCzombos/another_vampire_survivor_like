@@ -1,0 +1,149 @@
+[gd_scene load_steps=12 format=3 uid="uid://bfuvcr0onkq5j"]
+
+[ext_resource type="Script" uid="uid://0pi3qw4fq3oj" path="res://entities/player/player.gd" id="1_abrql"]
+[ext_resource type="Texture2D" uid="uid://fqb8ax0kxf54" path="res://assets/player/player.png" id="1_symyc"]
+[ext_resource type="PackedScene" uid="uid://dsd4dwkfg4y7d" path="res://entities/weapons/weapon_fire_baculum.tscn" id="3_sglur"]
+[ext_resource type="PackedScene" uid="uid://c2nsotd2cmhkg" path="res://entities/projectiles/fire_ball_projectile.tscn" id="4_bls4j"]
+
+[sub_resource type="Animation" id="Animation_bls4j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_abrql"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0166667, 0.5, 1),
+"transitions": PackedFloat32Array(0.282843, 0.649802, 0.4),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.3, 0.7), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.282843, 0.672717, 0.4),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 3.63), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sglur"]
+resource_name = "run"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.766667, 1),
+"transitions": PackedFloat32Array(0.482968, 0.517632, 1, 1),
+"update": 0,
+"values": [0.0, 0.122173, -0.122173, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fkugw"]
+_data = {
+&"RESET": SubResource("Animation_bls4j"),
+&"idle": SubResource("Animation_abrql"),
+&"run": SubResource("Animation_sglur")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_symyc"]
+size = Vector2(12, 12)
+
+[sub_resource type="Curve2D" id="Curve2D_sglur"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -221, 0, 0, 0, 0, 399, -220, 0, 0, 0, 0, 400, 218, 0, 0, 0, 0, -400, 218, 0, 0, 0, 0, -401, -220, 0, 0, 0, 0, 0, -221)
+}
+point_count = 6
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bls4j"]
+radius = 66.0076
+
+[node name="Player" type="CharacterBody2D"]
+texture_filter = 1
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_abrql")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_symyc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fkugw")
+}
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_symyc")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="SpawnPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_sglur")
+
+[node name="SpawnPathFollow" type="PathFollow2D" parent="SpawnPath"]
+position = Vector2(0, -221)
+rotation = 0.00250626
+
+[node name="PickupArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 16
+
+[node name="Collision" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("CircleShape2D_bls4j")
+
+[node name="Weapons" type="Node2D" parent="."]
+
+[node name="FireBaculum" parent="Weapons" instance=ExtResource("3_sglur")]
+projectile = ExtResource("4_bls4j")
+fire_rate = 2.0
+projectile_speed = 300
+
+[connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]

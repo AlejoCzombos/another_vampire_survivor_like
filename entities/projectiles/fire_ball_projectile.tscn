@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2nsotd2cmhkg"]
+
+[ext_resource type="PackedScene" uid="uid://dy1jlyppesfcx" path="res://entities/projectiles/projectile_base.tscn" id="1_nl7n0"]
+[ext_resource type="Texture2D" uid="uid://dr15yuf2te1wd" path="res://assets/projectiles/fire_ball.png" id="2_htsgs"]
+
+[node name="FireBallProjectile" instance=ExtResource("1_nl7n0")]
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource("2_htsgs")
