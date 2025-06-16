@@ -7,3 +7,5 @@ func get_player() -> Player:
 
 func set_player(new_player: Player) -> void:
 	player = new_player
+
+var camera: Camera2D = null

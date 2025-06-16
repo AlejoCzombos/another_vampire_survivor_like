@@ -4,6 +4,7 @@ extends CharacterBody2D
 enum PLAYER_STATES {
 	SPAWNING,
 	LIVE,
+	HURT,
 	DEATH,
 }
 
@@ -12,31 +13,22 @@ enum PLAYER_STATES {
 @export var health: float = 10
 
 @onready var sprite: Sprite2D = $Sprite
+@onready var camera: Camera2D = $Camera
 @onready var animation: AnimationPlayer = $AnimationPlayer
+@onready var animation_tree: AnimationTree = $AnimationTree
 @onready var collision: CollisionShape2D = $Collision
 @onready var spawn_path_follow: PathFollow2D = $SpawnPath/SpawnPathFollow
+@onready var i_frames_timer: Timer = $IFramesTimer
+
+var animation_state: AnimationNodeStateMachinePlayback
 
 var current_state: int = PLAYER_STATES.SPAWNING
 
 func _ready() -> void:
 	Globals.set_player(self)
+	state_controller(PLAYER_STATES.LIVE)
+	animation_state = animation_tree["parameters/playback"]
 
-func state_controller(new_state: PLAYER_STATES) -> void:
-	if new_state == current_state:
-		return
-	match new_state:
-		PLAYER_STATES.SPAWNING:
-			print('Spawning')
-			pass
-		PLAYER_STATES.LIVE:
-			print('Live')
-			pass
-		PLAYER_STATES.DEATH:
-			print('Death')
-			pass
-		_:
-			printerr("ERROR ESTADO")
-	current_state = new_state
 
 func _process(_delta: float) -> void:
 	var movement: Vector2 = Vector2.ZERO
@@ -52,10 +44,6 @@ func _process(_delta: float) -> void:
 	
 	if movement.length() > 0:
 		movement = movement.normalized() * player_velocity
-		animation.play("run")
-	else:
-		if !animation.is_playing():
-			animation.play("idle")
 	
 	if velocity.x < 0:
 		sprite.flip_h = true
@@ -68,3 +56,47 @@ func _process(_delta: float) -> void:
 
 func _on_pickup_area_body_entered(body: Node2D) -> void:
 	body.attract_to_player(global_position)
+
+
+func _on_hit_area_body_entered(_body: Node2D) -> void:
+	if current_state == PLAYER_STATES.HURT or current_state == PLAYER_STATES.DEATH:
+		return
+	
+	health -= 1
+	if health <= 0:
+		state_controller(PLAYER_STATES.DEATH)
+		return
+	
+	state_controller(PLAYER_STATES.HURT)
+	camera.start_shake()
+
+
+func _on_i_frames_timer_timeout() -> void:
+	state_controller(PLAYER_STATES.LIVE)
+	i_frames_timer.stop()
+
+
+func state_controller(new_state: PLAYER_STATES) -> void:
+	if new_state == current_state:
+		return
+	match new_state:
+		PLAYER_STATES.SPAWNING:
+			pass
+		PLAYER_STATES.LIVE:
+			collision.disabled = false
+			pass
+		PLAYER_STATES.HURT:
+			animation_state.travel("hit")
+			i_frames_timer.start()
+			collision.disabled = true
+		PLAYER_STATES.DEATH:
+			collision.disabled = true
+			pass
+		_:
+			printerr("STATE ERROR")
+	current_state = new_state
+	print_player_state()
+
+
+func print_player_state() -> void:
+	print("♣️ Player state: ", PLAYER_STATES.find_key(current_state))

@@ -13,6 +13,7 @@ enum STATE {
 
 @onready var shoot_position: Marker2D = $ShootPosition
 @onready var cooldown_timer: Timer = $CooldownTimer
+@onready var shoot_sfx: AudioStreamPlayer2D = $ShootSFX
 
 var current_state: STATE = STATE.COOLDOWN
 
@@ -24,7 +25,9 @@ func _ready() -> void:
 
 func shoot(rotarion: float) -> void:
 	state_controller(STATE.COOLDOWN)
-	
+
+	shoot_sfx.play()
+
 	var new_projectile: ProjectilBase = projectile.instantiate()
 	new_projectile.instantiate(
 		shoot_position.global_position,

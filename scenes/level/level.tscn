@@ -222,6 +222,15 @@ enemy = ExtResource("3_i166f")
 position = Vector2(140, -42)
 
 [node name="EnemyBase2" parent="." instance=ExtResource("3_i166f")]
-position = Vector2(190, -39)
+position = Vector2(159, -31)
+
+[node name="EnemyBase3" parent="." instance=ExtResource("3_i166f")]
+position = Vector2(181, -19)
+
+[node name="EnemyBase4" parent="." instance=ExtResource("3_i166f")]
+position = Vector2(147, -9)
+
+[node name="EnemyBase5" parent="." instance=ExtResource("3_i166f")]
+position = Vector2(132, -16)
 
 [node name="GameManager" parent="." instance=ExtResource("6_vpf64")]

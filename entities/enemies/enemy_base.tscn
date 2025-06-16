@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cyqgl7aeto5de"]
 
 [ext_resource type="Texture2D" uid="uid://ctitce83aw58o" path="res://assets/enemies/ghost.png" id="1_3iigx"]
-[ext_resource type="Script" uid="uid://dwkvhyewroam4" path="res://enemy_base.gd" id="1_6kwvc"]
+[ext_resource type="Script" uid="uid://dwkvhyewroam4" path="res://entities/enemies/enemy_base.gd" id="1_6kwvc"]
 
 [node name="EnemyBase" type="Sprite2D"]
 texture_filter = 1

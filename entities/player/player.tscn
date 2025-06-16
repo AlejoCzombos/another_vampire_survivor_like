@@ -1,9 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://bfuvcr0onkq5j"]
+[gd_scene load_steps=33 format=3 uid="uid://bfuvcr0onkq5j"]
 
 [ext_resource type="Script" uid="uid://0pi3qw4fq3oj" path="res://entities/player/player.gd" id="1_abrql"]
 [ext_resource type="Texture2D" uid="uid://fqb8ax0kxf54" path="res://assets/player/player.png" id="1_symyc"]
+[ext_resource type="Script" uid="uid://ykq8uh3kaj4t" path="res://scenes/camera/camera.gd" id="3_26q78"]
 [ext_resource type="PackedScene" uid="uid://dsd4dwkfg4y7d" path="res://entities/weapons/weapon_fire_baculum.tscn" id="3_sglur"]
 [ext_resource type="PackedScene" uid="uid://c2nsotd2cmhkg" path="res://entities/projectiles/fire_ball_projectile.tscn" id="4_bls4j"]
+[ext_resource type="AudioStream" uid="uid://djih5q4bjnbg3" path="res://assets/player/sfx/footsteps_sfx.wav" id="5_8fjmc"]
+[ext_resource type="AudioStream" uid="uid://baqw881h34pte" path="res://assets/player/sfx/footsteps_sfx_b.wav" id="6_qiwj3"]
+[ext_resource type="AudioStream" uid="uid://cskxmxq5ywry" path="res://assets/player/sfx/hit_sfx.wav" id="7_qiwj3"]
 
 [sub_resource type="Animation" id="Animation_bls4j"]
 length = 0.001
@@ -42,6 +46,88 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qiwj3"]
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(0.153893, 3.13834, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.7, 1.3), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(0.170755, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(0.183011, 1, 1),
+"update": 0,
+"values": [0.0, 0.15708, 0.0]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HitSFX")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_26q78"]
+resource_name = "i_frames"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.249538, 0.5),
+"transitions": PackedFloat32Array(0.267944, 2.21914, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.585062, 0.585062, 0.585062, 0.509804), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_abrql"]
@@ -86,13 +172,83 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0, 0.122173, -0.122173, 0.0]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FootStepSFX")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.266667, 0.733333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fkugw"]
 _data = {
 &"RESET": SubResource("Animation_bls4j"),
+&"hit": SubResource("Animation_qiwj3"),
+&"i_frames": SubResource("Animation_26q78"),
 &"idle": SubResource("Animation_abrql"),
 &"run": SubResource("Animation_sglur")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_26q78"]
+animation = &"hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7thud"]
+animation = &"i_frames"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bectd"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wvtmh"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7thud"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a1qjk"]
+advance_mode = 2
+advance_expression = "velocity"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j3ovn"]
+advance_mode = 2
+advance_expression = "velocity"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_26q78"]
+advance_mode = 2
+advance_expression = "current_state == 2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bectd"]
+advance_mode = 2
+advance_expression = "current_state == 2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_afbqv"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gx6sm"]
+advance_mode = 2
+advance_expression = "current_state == 1"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_26q78"]
+states/hit/node = SubResource("AnimationNodeAnimation_26q78")
+states/hit/position = Vector2(531, 331)
+states/i_frames/node = SubResource("AnimationNodeAnimation_7thud")
+states/i_frames/position = Vector2(531, 227)
+states/idle/node = SubResource("AnimationNodeAnimation_bectd")
+states/idle/position = Vector2(374, 100)
+states/run/node = SubResource("AnimationNodeAnimation_wvtmh")
+states/run/position = Vector2(687, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_7thud"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_a1qjk"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_j3ovn"), "idle", "hit", SubResource("AnimationNodeStateMachineTransition_26q78"), "run", "hit", SubResource("AnimationNodeStateMachineTransition_bectd"), "hit", "i_frames", SubResource("AnimationNodeStateMachineTransition_afbqv"), "i_frames", "idle", SubResource("AnimationNodeStateMachineTransition_gx6sm")]
+graph_offset = Vector2(72, 76)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_symyc"]
 size = Vector2(12, 12)
@@ -106,10 +262,25 @@ point_count = 6
 [sub_resource type="CircleShape2D" id="CircleShape2D_bls4j"]
 radius = 66.0076
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qiwj3"]
+size = Vector2(12, 12)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_26q78"]
+random_pitch = 1.3
+streams_count = 2
+stream_0/stream = ExtResource("5_8fjmc")
+stream_1/stream = ExtResource("6_qiwj3")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bectd"]
+random_pitch = 1.8
+streams_count = 1
+stream_0/stream = ExtResource("7_qiwj3")
+
 [node name="Player" type="CharacterBody2D"]
 texture_filter = 1
 collision_layer = 2
-collision_mask = 4
+collision_mask = 0
+motion_mode = 1
 script = ExtResource("1_abrql")
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -120,10 +291,17 @@ libraries = {
 &"": SubResource("AnimationLibrary_fkugw")
 }
 
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_26q78")
+anim_player = NodePath("../AnimationPlayer")
+
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_symyc")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
+script = ExtResource("3_26q78")
+
+[node name="TimerCameraShake" type="Timer" parent="Camera"]
 
 [node name="SpawnPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_sglur")
@@ -132,18 +310,39 @@ curve = SubResource("Curve2D_sglur")
 position = Vector2(0, -221)
 rotation = 0.00250626
 
-[node name="PickupArea" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 16
-
-[node name="Collision" type="CollisionShape2D" parent="PickupArea"]
-shape = SubResource("CircleShape2D_bls4j")
-
 [node name="Weapons" type="Node2D" parent="."]
+visible = false
 
 [node name="FireBaculum" parent="Weapons" instance=ExtResource("3_sglur")]
 projectile = ExtResource("4_bls4j")
 fire_rate = 2.0
 projectile_speed = 300
 
+[node name="PickupArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+collision_mask = 16
+
+[node name="Collision" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("CircleShape2D_bls4j")
+
+[node name="HitArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="Collision" type="CollisionShape2D" parent="HitArea"]
+shape = SubResource("RectangleShape2D_qiwj3")
+
+[node name="FootStepSFX" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_26q78")
+volume_db = -20.0
+bus = &"SFX"
+
+[node name="HitSFX" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_bectd")
+
+[node name="IFramesTimer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
+[connection signal="timeout" from="IFramesTimer" to="." method="_on_i_frames_timer_timeout"]

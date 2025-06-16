@@ -1,8 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsd4dwkfg4y7d"]
+[gd_scene load_steps=5 format=3 uid="uid://dsd4dwkfg4y7d"]
 
 [ext_resource type="PackedScene" uid="uid://cwkrtmxcbmjj" path="res://entities/weapons/weapon_base.tscn" id="1_3aycv"]
 [ext_resource type="Script" uid="uid://cka2wumao1eqy" path="res://entities/weapons/weapon_fire_baculum.gd" id="2_163bx"]
+[ext_resource type="AudioStream" uid="uid://b14aijl3p7h6h" path="res://assets/weapons/sfx/baculum_sfx.wav" id="3_3aycv"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_163bx"]
+random_pitch = 1.3
+streams_count = 1
+stream_0/stream = ExtResource("3_3aycv")
 
 [node name="FireBaculum" instance=ExtResource("1_3aycv")]
 script = ExtResource("2_163bx")
 projectile = null
+
+[node name="ShootSFX" parent="." index="3"]
+stream = SubResource("AudioStreamRandomizer_163bx")
+bus = &"SFX"

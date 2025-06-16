@@ -2,7 +2,7 @@ extends WeaponBase
 
 func _process(_delta: float) -> void:
 	if (current_state == STATE.SHOOTING):
-		var nearest_enemy = get_nearest_enemy()
+		var nearest_enemy: EnemyBase = get_nearest_enemy()
 		
 		shoot(
 			get_angle_to(nearest_enemy.global_position)
