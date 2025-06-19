@@ -9,10 +9,10 @@ const EXPERIENCE_GROWTH_RATE : float = 1.5
 
 func add_experience(amount: int) -> void:
 	experience += amount
-	print("Gained ", amount, " XP. Total: ", experience, "/", experience_required)
 
 	while experience >= experience_required:
 		experience -= experience_required
 		level += 1
 		experience_required = int(experience_required * EXPERIENCE_GROWTH_RATE)
-		print("💎 Leveled up! New level: ", level, " | XP needed: ", experience_required)
+	
+	Events.hud_refresh_experience.emit(level, experience, experience_required)

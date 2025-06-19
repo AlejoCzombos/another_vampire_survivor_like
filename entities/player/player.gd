@@ -64,10 +64,10 @@ func _on_hit_area_body_entered(_body: Node2D) -> void:
 	
 	health -= 1
 	if health <= 0:
-		state_controller(PLAYER_STATES.DEATH)
+		call_deferred("state_controller", PLAYER_STATES.DEATH)
 		return
 	
-	state_controller(PLAYER_STATES.HURT)
+	call_deferred("state_controller", PLAYER_STATES.HURT)
 	camera.start_shake()
 
 

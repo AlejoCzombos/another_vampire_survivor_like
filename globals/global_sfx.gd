@@ -15,6 +15,10 @@ func play_enemy_died() -> void:
 	if enemy_died_sfx.stream:
 		enemy_died_sfx.play()
 
+var delay: Array[float] = [0.0, 0.02, 0.04, 0.06, 0.08]
+
 func play_coin_collected() -> void:
 	if coin_collected_sfx.stream:
+		if coin_collected_sfx.playing:
+			await get_tree().create_timer(delay.pick_random()).timeout
 		coin_collected_sfx.play()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://6hfxwxby6vys"]
+[gd_scene load_steps=11 format=4 uid="uid://6hfxwxby6vys"]
 
 [ext_resource type="PackedScene" uid="uid://bfuvcr0onkq5j" path="res://entities/player/player.tscn" id="1_nbgty"]
 [ext_resource type="Texture2D" uid="uid://b7fc55jkh41m7" path="res://assets/dungeon/dungeon.png" id="2_i166f"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://7fs4lnopwgvt" path="res://scenes/managers/spawn_manager.tscn" id="4_qkmgm"]
 [ext_resource type="PackedScene" uid="uid://cat1e8qi14qew" path="res://scenes/managers/enemy_manager.tscn" id="5_hnne4"]
 [ext_resource type="PackedScene" uid="uid://ch0xg1dy8syqh" path="res://scenes/managers/game_manager.tscn" id="6_vpf64"]
+[ext_resource type="PackedScene" uid="uid://bw75pk5py0dfs" path="res://entities/experiences/experience_coin.tscn" id="7_wcngd"]
+[ext_resource type="PackedScene" uid="uid://kq0dy56nsyij" path="res://menu/hub/hub_manager.tscn" id="7_xv074"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qkmgm"]
 texture = ExtResource("2_i166f")
@@ -218,19 +220,67 @@ enemy = ExtResource("3_i166f")
 
 [node name="EnemyManager" parent="." instance=ExtResource("5_hnne4")]
 
-[node name="EnemyBase" parent="." instance=ExtResource("3_i166f")]
-position = Vector2(140, -42)
+[node name="GameManager" parent="." instance=ExtResource("6_vpf64")]
 
-[node name="EnemyBase2" parent="." instance=ExtResource("3_i166f")]
-position = Vector2(159, -31)
+[node name="HUDManager" parent="." instance=ExtResource("7_xv074")]
 
-[node name="EnemyBase3" parent="." instance=ExtResource("3_i166f")]
-position = Vector2(181, -19)
+[node name="Enemies" type="Node" parent="."]
 
-[node name="EnemyBase4" parent="." instance=ExtResource("3_i166f")]
-position = Vector2(147, -9)
-
-[node name="EnemyBase5" parent="." instance=ExtResource("3_i166f")]
+[node name="EnemyBase5" parent="Enemies" instance=ExtResource("3_i166f")]
 position = Vector2(132, -16)
 
-[node name="GameManager" parent="." instance=ExtResource("6_vpf64")]
+[node name="EnemyBase" parent="Enemies" instance=ExtResource("3_i166f")]
+position = Vector2(140, -42)
+
+[node name="EnemyBase2" parent="Enemies" instance=ExtResource("3_i166f")]
+position = Vector2(159, -31)
+
+[node name="EnemyBase3" parent="Enemies" instance=ExtResource("3_i166f")]
+position = Vector2(181, -19)
+
+[node name="EnemyBase4" parent="Enemies" instance=ExtResource("3_i166f")]
+position = Vector2(147, -9)
+
+[node name="Experiences" type="Node" parent="."]
+
+[node name="ExperienceCoin" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(307, 126)
+
+[node name="ExperienceCoin2" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(313, 145)
+
+[node name="ExperienceCoin3" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(291, 149)
+
+[node name="ExperienceCoin4" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(327, 131)
+
+[node name="ExperienceCoin5" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(322, 113)
+
+[node name="ExperienceCoin6" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(344, 126)
+
+[node name="ExperienceCoin7" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(341, 152)
+
+[node name="ExperienceCoin8" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(314, 169)
+
+[node name="ExperienceCoin9" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(291, 161)
+
+[node name="ExperienceCoin10" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(331, 160)
+
+[node name="ExperienceCoin11" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(337, 104)
+
+[node name="ExperienceCoin12" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(357, 135)
+
+[node name="ExperienceCoin13" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(324, 153)
+
+[node name="ExperienceCoin14" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(350, 197)

@@ -7,6 +7,7 @@
 size = Vector2(10, 10)
 
 [node name="ExperienceCoin" type="StaticBody2D"]
+z_index = 10
 texture_filter = 1
 texture_repeat = 1
 collision_layer = 16

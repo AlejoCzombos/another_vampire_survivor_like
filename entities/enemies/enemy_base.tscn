@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dwkvhyewroam4" path="res://entities/enemies/enemy_base.gd" id="1_6kwvc"]
 
 [node name="EnemyBase" type="Sprite2D"]
+z_index = 30
 texture_filter = 1
 texture_repeat = 1
 texture = ExtResource("1_3iigx")
