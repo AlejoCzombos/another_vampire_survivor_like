@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://qidhcbph8pce"]
+
+[ext_resource type="Texture2D" uid="uid://cqb7i5jqev2r4" path="res://assets/upgrades/attack_icon.png" id="1_11gtq"]
+[ext_resource type="Script" uid="uid://jkvp1vn81why" path="res://resources/upgrades/upgrade_resorce.gd" id="1_lgso3"]
+
+[resource]
+script = ExtResource("1_lgso3")
+card_title = "Sharpened Blades"
+card_description = "Increases your weapon damage by 25%."
+card_icon = ExtResource("1_11gtq")
+upgrade_type = 1
+upgrade_value = 25.0
+apply_upgrade = Callable()
+metadata/_custom_type_script = "uid://jkvp1vn81why"

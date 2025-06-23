@@ -36,6 +36,11 @@ window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 
+[gui]
+
+theme/custom="uid://by0lct8whvqip"
+theme/custom_font="uid://b3wguh7e8qx8n"
+
 [input]
 
 right={

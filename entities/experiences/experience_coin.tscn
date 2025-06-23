@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://bw75pk5py0dfs"]
 
-[ext_resource type="Texture2D" uid="uid://bf5ijelnwpdfp" path="res://assets/experiences/coin.png" id="1_cmri5"]
 [ext_resource type="Script" uid="uid://8hmhnt8p5gbv" path="res://entities/experiences/experience_coin.gd" id="1_nk45c"]
+[ext_resource type="Texture2D" uid="uid://d6yyhkv3i3o6" path="res://assets/sheets/16x16_spritesheet.png" id="2_nk45c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nk45c"]
-size = Vector2(10, 10)
+size = Vector2(13, 14)
 
 [node name="ExperienceCoin" type="StaticBody2D"]
 z_index = 10
@@ -15,7 +15,10 @@ collision_mask = 2
 script = ExtResource("1_nk45c")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_nk45c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_cmri5")
+texture = ExtResource("2_nk45c")
+region_enabled = true
+region_rect = Rect2(0, 144, 16, 16)

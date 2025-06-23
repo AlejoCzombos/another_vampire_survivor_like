@@ -15,9 +15,8 @@ func initialize_hud() -> void:
     var initial_experience_required: int = PlayerProperties.experience_required
     refresh_experience(initial_expecience_level, initial_experience, initial_experience_required)
 
-
+# TODO: Make a function for refreshing experience and for level up separately
 func refresh_experience(level: int, experience: int, experience_required: int) -> void:
-    print("HUD: Refreshing experience bar with level:", level, "experience:", experience, "experience_required:", experience_required)
     experience_bar.max_value = experience_required
     experience_bar.value = experience
     experience_label.text = str(level)

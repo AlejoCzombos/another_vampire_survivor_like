@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://tripvghcai08"]
+
+[ext_resource type="Texture2D" uid="uid://cjb0ans87nf0e" path="res://assets/upgrades/attack_speed_icon.png" id="1_77usb"]
+[ext_resource type="Script" uid="uid://jkvp1vn81why" path="res://resources/upgrades/upgrade_resorce.gd" id="1_fvrom"]
+
+[resource]
+script = ExtResource("1_fvrom")
+card_title = "Quick Hands"
+card_description = "Attack 20% faster."
+card_icon = ExtResource("1_77usb")
+upgrade_type = 4
+upgrade_value = 20.0
+apply_upgrade = Callable()
+metadata/_custom_type_script = "uid://jkvp1vn81why"

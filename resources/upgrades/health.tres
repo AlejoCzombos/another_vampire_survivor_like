@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://g1pqhycpc8mc"]
+
+[ext_resource type="Texture2D" uid="uid://beihjssn551g8" path="res://assets/sheets/heart.png" id="1_71t3f"]
+[ext_resource type="Script" uid="uid://jkvp1vn81why" path="res://resources/upgrades/upgrade_resorce.gd" id="2_si2vo"]
+
+[resource]
+script = ExtResource("2_si2vo")
+card_title = "Iron Constitution"
+card_description = "Gain +20 maximum health."
+card_icon = ExtResource("1_71t3f")
+upgrade_type = 2
+upgrade_value = 20.0
+apply_upgrade = Callable()
+metadata/_custom_type_script = "uid://jkvp1vn81why"

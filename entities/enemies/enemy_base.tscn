@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cyqgl7aeto5de"]
 
-[ext_resource type="Texture2D" uid="uid://ctitce83aw58o" path="res://assets/enemies/ghost.png" id="1_3iigx"]
+[ext_resource type="Texture2D" uid="uid://d6yyhkv3i3o6" path="res://assets/sheets/16x16_spritesheet.png" id="1_3iigx"]
 [ext_resource type="Script" uid="uid://dwkvhyewroam4" path="res://entities/enemies/enemy_base.gd" id="1_6kwvc"]
 
 [node name="EnemyBase" type="Sprite2D"]
@@ -8,4 +8,6 @@ z_index = 30
 texture_filter = 1
 texture_repeat = 1
 texture = ExtResource("1_3iigx")
+region_enabled = true
+region_rect = Rect2(0, 336, 16, 16)
 script = ExtResource("1_6kwvc")

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://dg2trjo6w3kay"]
+
+[ext_resource type="Script" uid="uid://jkvp1vn81why" path="res://resources/upgrades/upgrade_resorce.gd" id="1_ah1ey"]
+[ext_resource type="Texture2D" uid="uid://dq04rl6qg12w2" path="res://assets/upgrades/magic_icon.png" id="1_mfn1k"]
+
+[resource]
+script = ExtResource("1_ah1ey")
+card_title = "Deadly Strikes"
+card_description = "Critical hits deal 50% more damage."
+card_icon = ExtResource("1_mfn1k")
+upgrade_type = 5
+upgrade_value = 1.5
+apply_upgrade = Callable()
+metadata/_custom_type_script = "uid://jkvp1vn81why"
