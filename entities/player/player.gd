@@ -8,10 +8,6 @@ enum PLAYER_STATES {
 	DEATH,
 }
 
-@export_group("Player atributes")
-@export_range(0, 10, 0.1) var player_velocity: float = 5
-@export var health: float = 10
-
 @onready var sprite: Sprite2D = $Sprite
 @onready var camera: Camera2D = $Camera
 @onready var animation: AnimationPlayer = $AnimationPlayer
@@ -20,13 +16,22 @@ enum PLAYER_STATES {
 @onready var spawn_path_follow: PathFollow2D = $SpawnPath/SpawnPathFollow
 @onready var i_frames_timer: Timer = $IFramesTimer
 
+@onready var weapon: WeaponBase = $Weapons/FireBaculum
+
 var animation_state: AnimationNodeStateMachinePlayback
+
+var damage: float
+var health: int
+var move_speed: float
+var attack_cooldown: float
+var crit_multiplier: float
 
 var current_state: int = PLAYER_STATES.SPAWNING
 
 func _ready() -> void:
 	Globals.set_player(self)
 	state_controller(PLAYER_STATES.LIVE)
+	initialize_properties()
 	animation_state = animation_tree["parameters/playback"]
 
 
@@ -43,7 +48,7 @@ func _process(_delta: float) -> void:
 		movement.x = -1
 	
 	if movement.length() > 0:
-		movement = movement.normalized() * player_velocity
+		movement = movement.normalized() * move_speed
 	
 	if velocity.x < 0:
 		sprite.flip_h = true
@@ -52,6 +57,29 @@ func _process(_delta: float) -> void:
 	
 	velocity = movement * 10
 	move_and_slide()
+
+func initialize_properties() -> void:
+	damage = PlayerProperties.damage
+	health = PlayerProperties.health
+	move_speed = PlayerProperties.move_speed
+	attack_cooldown = PlayerProperties.attack_cooldown
+	crit_multiplier = PlayerProperties.crit_multiplier
+	
+	weapon.update_properties(attack_cooldown, damage)
+
+
+func update_properties(
+	new_damage: float,
+	new_health: int,
+	new_attack_cooldown: float,
+	new_crit_multiplier: float
+) -> void:
+	damage = new_damage
+	health = new_health
+	attack_cooldown = new_attack_cooldown
+	crit_multiplier = new_crit_multiplier
+	
+	weapon.update_properties(attack_cooldown, damage)
 
 
 func _on_pickup_area_body_entered(body: Node2D) -> void:
@@ -95,7 +123,7 @@ func state_controller(new_state: PLAYER_STATES) -> void:
 		_:
 			printerr("STATE ERROR")
 	current_state = new_state
-	print_player_state()
+	#print_player_state()
 
 
 func print_player_state() -> void:

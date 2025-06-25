@@ -16,3 +16,12 @@ func get_nearest_enemy() -> EnemyBase:
 	if near_bodies:
 		return near_bodies.front()
 	return null
+
+
+func update_properties(
+	new_cooldown: float,
+	new_damage: float
+) -> void:
+	projectile_damage = new_damage
+	cooldown_timer.wait_time = new_cooldown
+	#cooldown_timer.start()

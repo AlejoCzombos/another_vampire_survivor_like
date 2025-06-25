@@ -14,6 +14,12 @@ region = Rect2(80, 400, 16, 16)
 [node name="UpgradeCard" type="NinePatchRect"]
 texture_filter = 1
 custom_minimum_size = Vector2(120, 140)
+anchors_preset = -1
+anchor_right = 0.187
+anchor_bottom = 0.389
+offset_right = 0.319992
+offset_bottom = -0.0400085
+pivot_offset = Vector2(60, 70)
 mouse_filter = 0
 texture = SubResource("AtlasTexture_1d55w")
 region_rect = Rect2(0, 0, 32, 32)
@@ -22,6 +28,8 @@ patch_margin_top = 22
 patch_margin_right = 22
 patch_margin_bottom = 22
 script = ExtResource("2_hdb6e")
+metadata/_edit_horizontal_guides_ = [140.0, 70.0]
+metadata/_edit_vertical_guides_ = [120.0, 60.0]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

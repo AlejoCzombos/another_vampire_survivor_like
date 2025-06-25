@@ -15,6 +15,7 @@ var is_selected: bool = false
 
 func _ready() -> void:
 	initial_position = position
+	#position.y = initial_position.y + 20
 	title_label.clear()
 	description_label.clear()
 	info_label.clear()
@@ -33,12 +34,12 @@ func play_entrance(delay: float = 0.0) -> void:
 	await get_tree().create_timer(delay).timeout
 	
 	modulate.a = 0
-	scale = Vector2(0.5, 0.5)
-	position.y = initial_position.y + 20
+	#scale = Vector2(0.5, 0.5)
+	#position.y = initial_position.y + 20
 
 	var tween_entrance: Tween = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 	tween_entrance.tween_property(self, "modulate:a", 1.0, 0.2)
-	tween_entrance.tween_property(self, "scale", Vector2(1.0, 1.0), 0.2)
+	#tween_entrance.tween_property(self, "scale", Vector2(1.0, 1.0), 0.2)
 	tween_entrance.tween_property(self, "position:y", initial_position.y, 0.2).set_delay(0.1)
 	# TODO: play a sound effect for the entrance animation
 
