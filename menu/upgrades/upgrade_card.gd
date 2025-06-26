@@ -31,16 +31,14 @@ func set_upgrade(upgrade: UpgradeResource) -> void:
 
 
 func play_entrance(delay: float = 0.0) -> void:
+	modulate.a = 0
 	await get_tree().create_timer(delay).timeout
 	
-	modulate.a = 0
-	#scale = Vector2(0.5, 0.5)
-	#position.y = initial_position.y + 20
+	position.y -= 30
 
-	var tween_entrance: Tween = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+	var tween_entrance: Tween = get_tree().create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT).set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween_entrance.tween_property(self, "modulate:a", 1.0, 0.2)
-	#tween_entrance.tween_property(self, "scale", Vector2(1.0, 1.0), 0.2)
-	tween_entrance.tween_property(self, "position:y", initial_position.y, 0.2).set_delay(0.1)
+	tween_entrance.tween_property(self, "position:y", initial_position.y, 0.2)
 	# TODO: play a sound effect for the entrance animation
 
 
@@ -66,8 +64,8 @@ func _on_mouse_exited() -> void:
 func _on_gui_input(event: InputEvent) -> void:
 	if is_selected and event is InputEventMouseButton and event.pressed:
 		if upgrade_resource:
-			print("Applying upgrade: ", upgrade_resource.card_title)
 			PlayerProperties.apply_upgrade(upgrade_resource)
-			#Events.upgrade_applied.emit(upgrade_resource)
+			Events.on_upgrade_selected.emit()
+			print("Upgrade applied: " + upgrade_resource.card_title)
 		else:
 			printerr("No upgrade resource set for this card.")

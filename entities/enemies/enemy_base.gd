@@ -64,7 +64,7 @@ func state_controller(new_state: STATE) -> void:
 			#PhysicsServer2D.body_set_state(object, PhysicsServer2D.BODY_STATE_LINEAR_VELOCITY, Vector2.ZERO)
 			#PhysicsServer2D.body_set_mode(object, PhysicsServer2D.BODY_MODE_STATIC)
 
-			Events.enemy_died.emit(global_position)
+			Events.on_enemy_died.emit(global_position)
 			queue_free()
 		
 		_:
@@ -76,7 +76,7 @@ func take_damage(_damage: float) -> void:
 	if health <= 0:
 		state_controller(STATE.DEAD)
 		return
-	Events.enemy_hit.emit()
+	Events.on_enemy_hit.emit()
 	
 
 

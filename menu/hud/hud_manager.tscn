@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://kq0dy56nsyij"]
+
+[ext_resource type="Script" uid="uid://wbcgwy68wwuh" path="res://menu/hud/hud_manager.gd" id="1_7yqc7"]
+[ext_resource type="PackedScene" uid="uid://bfwupb4725ry2" path="res://menu/hud/hud.tscn" id="1_gwewt"]
+[ext_resource type="PackedScene" uid="uid://bqremtifv3lo7" path="res://menu/upgrades/upgrades_selection_menu.tscn" id="2_e68tv"]
+
+[node name="HUDManager" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_7yqc7")
+
+[node name="HUD" parent="." instance=ExtResource("1_gwewt")]
+mouse_filter = 2
+
+[node name="PauseMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="UpgradesSelectionMenu" parent="." instance=ExtResource("2_e68tv")]

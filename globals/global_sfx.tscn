@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyolt17fnsogc"]
+[gd_scene load_steps=9 format=3 uid="uid://cyolt17fnsogc"]
 
 [ext_resource type="AudioStream" uid="uid://bpfinr7km56qt" path="res://assets/enemies/sfx/hit_sfx.wav" id="1_b65fl"]
 [ext_resource type="Script" uid="uid://bpusb0cqxgj86" path="res://globals/global_sfx.gd" id="1_jpued"]
 [ext_resource type="AudioStream" uid="uid://clipo1ks1mdtt" path="res://assets/experiences/sfx/coin_sfx.wav" id="2_sfpg6"]
 [ext_resource type="AudioStream" uid="uid://dgkplwyie5v38" path="res://assets/experiences/sfx/coin_sfx_b.wav" id="3_jpued"]
+[ext_resource type="AudioStream" uid="uid://dp2g7gnrd0nm4" path="res://assets/player/sfx/level_up_sfx.wav" id="5_fknmh"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8gho0"]
 random_pitch = 1.72
@@ -17,7 +18,12 @@ streams_count = 2
 stream_0/stream = ExtResource("2_sfpg6")
 stream_1/stream = ExtResource("3_jpued")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qbdjb"]
+streams_count = 1
+stream_0/stream = ExtResource("5_fknmh")
+
 [node name="GlobalSFX" type="Node"]
+process_mode = 3
 script = ExtResource("1_jpued")
 
 [node name="Enemies" type="Node" parent="."]
@@ -35,3 +41,7 @@ pitch_scale = 3.19
 [node name="CoinCollectedSFX" type="AudioStreamPlayer2D" parent="Player"]
 stream = SubResource("AudioStreamRandomizer_fknmh")
 max_polyphony = 10
+
+[node name="LevelUpSFX" type="AudioStreamPlayer2D" parent="Player"]
+stream = SubResource("AudioStreamRandomizer_qbdjb")
+pitch_scale = 1.3

@@ -36,6 +36,17 @@ window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 
+[file_customization]
+
+folder_colors={
+"res://assets/": "pink",
+"res://entities/": "red",
+"res://globals/": "orange",
+"res://menu/": "green",
+"res://resources/": "purple",
+"res://scenes/": "blue"
+}
+
 [gui]
 
 theme/custom="uid://by0lct8whvqip"

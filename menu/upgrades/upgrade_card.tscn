@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://1kt3777oxrdh"]
+[gd_scene load_steps=6 format=3 uid="uid://1kt3777oxrdh"]
 
+[ext_resource type="Texture2D" uid="uid://2g1c2tsrupet" path="res://assets/menus/ui_spritesheet.png" id="1_4b4em"]
 [ext_resource type="Texture2D" uid="uid://d6yyhkv3i3o6" path="res://assets/sheets/16x16_spritesheet.png" id="1_v536y"]
 [ext_resource type="Script" uid="uid://4bq38lvemigx" path="res://menu/upgrades/upgrade_card.gd" id="2_hdb6e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1d55w"]
-atlas = ExtResource("1_v536y")
-region = Rect2(80, 48, 32, 32)
+atlas = ExtResource("1_4b4em")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1kvi5"]
 atlas = ExtResource("1_v536y")
@@ -46,6 +47,11 @@ theme_override_constants/margin_bottom = 12
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
+[node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_1kvi5")
+stretch_mode = 5
+
 [node name="Title" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
@@ -55,11 +61,6 @@ text = "[wave]Mejora copada"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
-
-[node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_1kvi5")
-stretch_mode = 5
 
 [node name="Description" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

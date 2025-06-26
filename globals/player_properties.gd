@@ -11,8 +11,6 @@ var experience: int = 0
 var level: int = 1
 var experience_required: int = 100
 
-#var player: Player
-
 const EXPERIENCE_GROWTH_RATE : float = 1.5
 
 
@@ -23,42 +21,48 @@ func add_experience(amount: int) -> void:
 		experience -= experience_required
 		level += 1
 		experience_required = int(experience_required * EXPERIENCE_GROWTH_RATE)
+		Events.hud_refresh_level.emit(level, experience_required)
+		Events.on_level_up.emit()
 	
-	Events.hud_refresh_experience.emit(level, experience, experience_required)
+	Events.hud_refresh_experience.emit(experience)
+
+func update_health(current_health: int) -> void:
+	health = current_health
+	Events.hud_refresh_health.emit(health)
 
 func apply_upgrade(upgrade: UpgradeResource) -> void:
-	var player = Globals.get_player()
+	var player: Player = Globals.get_player()
+
 	match upgrade.upgrade_type:
+
 		UpgradeResource.UpgradeType.DAMAGE:
-			var percentaje = upgrade.upgrade_value / 100
-			damage += (damage * percentaje) 
-			player.damage = damage
+			var percentaje: float = upgrade.upgrade_value / 100
+			damage += (damage * percentaje)
 		
 		UpgradeResource.UpgradeType.HEALTH:
 			max_health += int(upgrade.upgrade_value)
 			health += int(upgrade.upgrade_value)
-			player.health = health
+			Events.hud_refresh_max_health.emit(health, max_health)
 		
 		UpgradeResource.UpgradeType.SPEED:
-			var percentaje = upgrade.upgrade_value / 100
+			var percentaje: float = upgrade.upgrade_value / 100
 			move_speed += (move_speed * percentaje)
-			player.move_speed = move_speed
 		
 		UpgradeResource.UpgradeType.ATTACK_SPEED:
-			var percentaje = upgrade.upgrade_value / 100
+			var percentaje: float = upgrade.upgrade_value / 100
 			attack_cooldown -= (attack_cooldown * percentaje)
-			player.attack_cooldown = attack_cooldown
 		
 		UpgradeResource.UpgradeType.CRITIC_DAMAGE:
-			var percentaje = upgrade.upgrade_value / 100
+			var percentaje: float = upgrade.upgrade_value / 100
 			crit_multiplier += (crit_multiplier * percentaje)
-			player.crit_multiplier = crit_multiplier
 		
 		_:
 			printerr("Unknown upgrade type: ", upgrade.upgrade_type)
+	
 	player.update_properties(
 		damage,
 		health,
+		move_speed,
 		attack_cooldown,
 		crit_multiplier
 	)

@@ -1,17 +1,19 @@
 [gd_scene load_steps=13 format=4 uid="uid://6hfxwxby6vys"]
 
 [ext_resource type="PackedScene" uid="uid://bfuvcr0onkq5j" path="res://entities/player/player.tscn" id="1_nbgty"]
-[ext_resource type="Texture2D" uid="uid://b7fc55jkh41m7" path="res://assets/dungeon/dungeon.png" id="2_i166f"]
 [ext_resource type="PackedScene" uid="uid://cyqgl7aeto5de" path="res://entities/enemies/enemy_base.tscn" id="3_i166f"]
 [ext_resource type="Texture2D" uid="uid://d6yyhkv3i3o6" path="res://assets/sheets/16x16_spritesheet.png" id="3_sytrn"]
 [ext_resource type="PackedScene" uid="uid://7fs4lnopwgvt" path="res://scenes/managers/spawn_manager.tscn" id="4_qkmgm"]
 [ext_resource type="PackedScene" uid="uid://cat1e8qi14qew" path="res://scenes/managers/enemy_manager.tscn" id="5_hnne4"]
 [ext_resource type="PackedScene" uid="uid://ch0xg1dy8syqh" path="res://scenes/managers/game_manager.tscn" id="6_vpf64"]
 [ext_resource type="PackedScene" uid="uid://bw75pk5py0dfs" path="res://entities/experiences/experience_coin.tscn" id="7_wcngd"]
-[ext_resource type="PackedScene" uid="uid://kq0dy56nsyij" path="res://menu/hub/hud_manager.tscn" id="7_xv074"]
+[ext_resource type="PackedScene" uid="uid://kq0dy56nsyij" path="res://menu/hud/hud_manager.tscn" id="7_xv074"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xv074"]
+load_path = "res://.godot/imported/dungeon.png-c0d3ca3da174948a7a0a03d311c9f052.ctex"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qkmgm"]
-texture = ExtResource("2_i166f")
+texture = SubResource("CompressedTexture2D_xv074")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -508,7 +510,10 @@ enemy = ExtResource("3_i166f")
 
 [node name="EnemyManager" parent="." instance=ExtResource("5_hnne4")]
 
-[node name="GameManager" parent="." instance=ExtResource("6_vpf64")]
+[node name="GameManager" parent="." node_paths=PackedStringArray("hud_manager", "enemy_manager", "spawn_manager") instance=ExtResource("6_vpf64")]
+hud_manager = NodePath("../HUDManager")
+enemy_manager = NodePath("../EnemyManager")
+spawn_manager = NodePath("../SpawnManager")
 
 [node name="HUDManager" parent="." instance=ExtResource("7_xv074")]
 
@@ -538,6 +543,36 @@ position = Vector2(307, 126)
 position = Vector2(313, 145)
 
 [node name="ExperienceCoin3" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(291, 149)
+
+[node name="ExperienceCoin15" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(291, 149)
+
+[node name="ExperienceCoin16" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(291, 149)
+
+[node name="ExperienceCoin17" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(291, 149)
+
+[node name="ExperienceCoin18" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(291, 149)
+
+[node name="ExperienceCoin19" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(291, 149)
+
+[node name="ExperienceCoin20" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(291, 149)
+
+[node name="ExperienceCoin21" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(291, 149)
+
+[node name="ExperienceCoin22" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(291, 149)
+
+[node name="ExperienceCoin23" parent="Experiences" instance=ExtResource("7_wcngd")]
+position = Vector2(291, 149)
+
+[node name="ExperienceCoin24" parent="Experiences" instance=ExtResource("7_wcngd")]
 position = Vector2(291, 149)
 
 [node name="ExperienceCoin4" parent="Experiences" instance=ExtResource("7_wcngd")]
