@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://rwsuifjydti4"]
+
+[ext_resource type="Texture2D" uid="uid://beihjssn551g8" path="res://assets/sheets/heart.png" id="1_hnw2c"]
+[ext_resource type="Script" uid="uid://bfjoutddvuiqj" path="res://menu/hud/heart.gd" id="2_b18id"]
+[ext_resource type="Texture2D" uid="uid://bl88as4d72a7" path="res://assets/sheets/half_heart.png" id="3_g454v"]
+[ext_resource type="Texture2D" uid="uid://c3tnxbyl8mf6c" path="res://assets/sheets/empty_heart.png" id="4_dhvr7"]
+
+[node name="Heart" type="TextureRect"]
+texture_filter = 1
+texture = ExtResource("1_hnw2c")
+script = ExtResource("2_b18id")
+full_texture = ExtResource("1_hnw2c")
+half_texture = ExtResource("3_g454v")
+empty_texture = ExtResource("4_dhvr7")

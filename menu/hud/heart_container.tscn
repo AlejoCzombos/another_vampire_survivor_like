@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm2s8bmjc3fmw"]
+
+[ext_resource type="Script" uid="uid://kvuk84j4sdb1" path="res://menu/hud/heart_container.gd" id="2_malnl"]
+[ext_resource type="PackedScene" uid="uid://rwsuifjydti4" path="res://menu/hud/heart.tscn" id="2_s8nv6"]
+
+[node name="HeartContainer" type="VFlowContainer"]
+script = ExtResource("2_malnl")
+heart_scene = ExtResource("2_s8nv6")
+
+[node name="Heart" parent="." instance=ExtResource("2_s8nv6")]
+layout_mode = 2
+
+[node name="Heart2" parent="." instance=ExtResource("2_s8nv6")]
+layout_mode = 2
+
+[node name="Heart3" parent="." instance=ExtResource("2_s8nv6")]
+layout_mode = 2

@@ -9,7 +9,7 @@ extends Node2D
 	#tween.tween_callback(queue_free)
 
 func emit_experience_collected() -> void:
-	Events.experience_collected.emit()
+	Events.on_experience_collected.emit()
 
 var is_following_player: bool = false
 var target_player_position: Vector2

@@ -1,7 +1,21 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://by0lct8whvqip"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://by0lct8whvqip"]
 
 [ext_resource type="FontFile" uid="uid://b3wguh7e8qx8n" path="res://assets/menus/m3x6.ttf" id="1_cjfk0"]
+[ext_resource type="Texture2D" uid="uid://2g1c2tsrupet" path="res://assets/menus/ui_spritesheet.png" id="1_vj6dk"]
 [ext_resource type="FontFile" uid="uid://dy11olkgvwcaf" path="res://assets/menus/m6x11.ttf" id="2_vj6dk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_110ce"]
+atlas = ExtResource("1_vj6dk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_05tig"]
+texture = SubResource("AtlasTexture_110ce")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(6, 6, 20, 20)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vj6dk"]
+bg_color = Color(0.998363, 0.00027319, 0.871868, 1)
 
 [sub_resource type="FontVariation" id="FontVariation_cjfk0"]
 base_font = ExtResource("1_cjfk0")
@@ -44,6 +58,9 @@ content_margin_right = 0.0
 content_margin_bottom = 0.0
 
 [resource]
+ExperienceBar/base_type = &"ProgressBar"
+ExperienceBar/styles/background = SubResource("StyleBoxTexture_05tig")
+ExperienceBar/styles/fill = SubResource("StyleBoxFlat_vj6dk")
 Label/constants/line_spacing = -4
 Label/fonts/font = ExtResource("1_cjfk0")
 RichTextLabel/colors/default_color = Color(1, 1, 1, 1)

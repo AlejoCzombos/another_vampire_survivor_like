@@ -10,5 +10,4 @@ card_description = "Gain +20 maximum health."
 card_icon = ExtResource("1_71t3f")
 upgrade_type = 2
 upgrade_value = 20.0
-apply_upgrade = Callable()
 metadata/_custom_type_script = "uid://jkvp1vn81why"
