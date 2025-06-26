@@ -16,8 +16,9 @@ enum PLAYER_STATES {
 @onready var spawn_path_follow: PathFollow2D = $SpawnPath/SpawnPathFollow
 @onready var i_frames_timer: Timer = $IFramesTimer
 
-@onready var weapon: WeaponBase = $Weapons/FireBaculum
+@onready var weapon: WeaponBase = $Weapons/BowWeapon
 
+var last_direction: Vector2 = Vector2.RIGHT
 var animation_state: AnimationNodeStateMachinePlayback
 
 var damage: float
@@ -49,6 +50,7 @@ func _process(_delta: float) -> void:
 	
 	if movement.length() > 0:
 		movement = movement.normalized() * move_speed
+		last_direction = movement
 	
 	if velocity.x < 0:
 		sprite.flip_h = true
@@ -71,11 +73,13 @@ func initialize_properties() -> void:
 func update_properties(
 	new_damage: float,
 	new_health: int,
+	new_move_speed: float,
 	new_attack_cooldown: float,
 	new_crit_multiplier: float
 ) -> void:
 	damage = new_damage
 	health = new_health
+	move_speed = new_move_speed
 	attack_cooldown = new_attack_cooldown
 	crit_multiplier = new_crit_multiplier
 	
@@ -96,6 +100,7 @@ func _on_hit_area_body_entered(_body: Node2D) -> void:
 		return
 	
 	call_deferred("state_controller", PLAYER_STATES.HURT)
+	PlayerProperties.update_health(health)
 	camera.start_shake()
 
 

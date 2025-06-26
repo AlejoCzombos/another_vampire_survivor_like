@@ -1,10 +1,9 @@
-[gd_scene load_steps=33 format=3 uid="uid://bfuvcr0onkq5j"]
+[gd_scene load_steps=32 format=3 uid="uid://bfuvcr0onkq5j"]
 
 [ext_resource type="Script" uid="uid://0pi3qw4fq3oj" path="res://entities/player/player.gd" id="1_abrql"]
 [ext_resource type="Texture2D" uid="uid://d6yyhkv3i3o6" path="res://assets/sheets/16x16_spritesheet.png" id="2_26q78"]
 [ext_resource type="Script" uid="uid://ykq8uh3kaj4t" path="res://scenes/camera/camera.gd" id="3_26q78"]
-[ext_resource type="PackedScene" uid="uid://dsd4dwkfg4y7d" path="res://entities/weapons/weapon_fire_baculum.tscn" id="3_sglur"]
-[ext_resource type="PackedScene" uid="uid://c2nsotd2cmhkg" path="res://entities/projectiles/fire_ball_projectile.tscn" id="4_bls4j"]
+[ext_resource type="PackedScene" uid="uid://dsd4dwkfg4y7d" path="res://entities/weapons/bow_weapon.tscn" id="4_qiwj3"]
 [ext_resource type="AudioStream" uid="uid://djih5q4bjnbg3" path="res://assets/player/sfx/footsteps_sfx.wav" id="5_8fjmc"]
 [ext_resource type="AudioStream" uid="uid://baqw881h34pte" path="res://assets/player/sfx/footsteps_sfx_b.wav" id="6_qiwj3"]
 [ext_resource type="AudioStream" uid="uid://cskxmxq5ywry" path="res://assets/player/sfx/hit_sfx.wav" id="7_qiwj3"]
@@ -315,13 +314,8 @@ position = Vector2(0, -221)
 rotation = 0.00250626
 
 [node name="Weapons" type="Node2D" parent="."]
-visible = false
 
-[node name="FireBaculum" parent="Weapons" instance=ExtResource("3_sglur")]
-projectile = ExtResource("4_bls4j")
-fire_rate = 2.0
-projectile_speed = 300
-projectile_damage = 10.0
+[node name="BowWeapon" parent="Weapons" instance=ExtResource("4_qiwj3")]
 
 [node name="PickupArea" type="Area2D" parent="."]
 visible = false

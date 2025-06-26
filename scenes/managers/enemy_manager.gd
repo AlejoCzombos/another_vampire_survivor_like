@@ -1,10 +1,11 @@
 extends Node
+class_name EnemyManager
 
 @export var experience_coin: PackedScene
 
 func _ready() -> void:
-	Events.enemy_died.connect(enemy_died)
-	Events.enemy_hit.connect(play_enemy_hit)
+	Events.on_enemy_died.connect(enemy_died)
+	Events.on_enemy_hit.connect(play_enemy_hit)
 
 func enemy_died(global_position: Vector2) -> void:
 	spawn_experience_coin(global_position)

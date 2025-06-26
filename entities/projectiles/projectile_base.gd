@@ -9,13 +9,13 @@ func _physics_process(delta: float) -> void:
 
 func instantiate(
 	pos: Vector2,
-	direction: float,
+	dir: float,
 	vel: float,
 	dm:float
 ) -> void:
 	position = pos
-	rotation = direction
-	velocity = Vector2(vel, 0).rotated(direction)
+	rotation = dir
+	velocity = Vector2(vel, 0).rotated(dir)
 	damage = dm
 
 func try_deal_damage(entity: Node2D) -> void:

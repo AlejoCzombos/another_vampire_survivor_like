@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsd4dwkfg4y7d"]
+
+[ext_resource type="PackedScene" uid="uid://cwkrtmxcbmjj" path="res://entities/weapons/weapon_base.tscn" id="1_0r23w"]
+[ext_resource type="Script" uid="uid://cka2wumao1eqy" path="res://entities/weapons/bow_weapon.gd" id="2_m8ise"]
+[ext_resource type="PackedScene" uid="uid://erufuf1k0hws" path="res://entities/projectiles/arrow_projectile.tscn" id="3_d1c2l"]
+[ext_resource type="AudioStream" uid="uid://b14aijl3p7h6h" path="res://assets/weapons/sfx/baculum_sfx.wav" id="4_pqana"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_163bx"]
+random_pitch = 1.3
+streams_count = 1
+stream_0/stream = ExtResource("4_pqana")
+
+[node name="BowWeapon" instance=ExtResource("1_0r23w")]
+script = ExtResource("2_m8ise")
+projectile = ExtResource("3_d1c2l")
+
+[node name="ShootSFX" parent="." index="3"]
+stream = SubResource("AudioStreamRandomizer_163bx")
+bus = &"SFX"
