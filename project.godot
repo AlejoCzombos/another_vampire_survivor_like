@@ -21,6 +21,7 @@ Globals="*res://globals/globals.gd"
 Events="*res://globals/events.gd"
 PlayerProperties="*res://globals/player_properties.gd"
 GlobalSFX="*res://globals/global_sfx.tscn"
+Constants="*res://globals/constants.gd"
 
 [debug]
 

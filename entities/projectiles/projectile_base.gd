@@ -20,7 +20,7 @@ func instantiate(
 
 func try_deal_damage(entity: Node2D) -> void:
 	if entity.has_method("take_damage"):
-		entity.take_damage(damage)
+		entity.take_damage(damage, false)
 	queue_free()
 
 func _on_visible_on_screen_notifier_screen_exited() -> void:

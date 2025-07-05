@@ -7,7 +7,7 @@ enum STATE {
 	DEAD
 }
 
-@export_range(0.0,20.0) var health: float = 1
+@export_range(0.0,20.0) var health: float = 4
 
 var object: RID
 var shape: RID
@@ -71,13 +71,12 @@ func state_controller(new_state: STATE) -> void:
 			printerr("Estado inválido")
 	current_state = new_state
 
-func take_damage(_damage: float) -> void:
-	health -= _damage
+func take_damage(damage: float, is_critic: bool) -> void:
+	health -= damage
 	if health <= 0:
 		state_controller(STATE.DEAD)
 		return
-	Events.on_enemy_hit.emit()
-	
+	Events.on_enemy_hit.emit(global_position, damage, is_critic)
 
 
 func _exit_tree() -> void:

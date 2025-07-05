@@ -1,11 +1,12 @@
 extends Node
 
-var damage: float = 10.0
+var damage: float = 2.0
 var max_health: int = 6
 var health: int = 6
 var move_speed: float = 10
 var attack_cooldown: float = 2
-var crit_multiplier: float = 0.1
+var crit_multiplier: float = 2
+var crit_probability: float = 0.1
 
 var experience: int = 0
 var level: int = 1
@@ -66,3 +67,7 @@ func apply_upgrade(upgrade: UpgradeResource) -> void:
 		attack_cooldown,
 		crit_multiplier
 	)
+
+func is_critic_damage() -> bool:
+	return randi()
+	return true
