@@ -63,7 +63,7 @@ func state_controller(new_state: STATE) -> void:
 		STATE.DEAD:
 			#PhysicsServer2D.body_set_state(object, PhysicsServer2D.BODY_STATE_LINEAR_VELOCITY, Vector2.ZERO)
 			#PhysicsServer2D.body_set_mode(object, PhysicsServer2D.BODY_MODE_STATIC)
-
+			await dissolving_animation()
 			Events.on_enemy_died.emit(global_position)
 			queue_free()
 		
@@ -77,7 +77,22 @@ func take_damage(damage: float, is_critic: bool) -> void:
 		state_controller(STATE.DEAD)
 		return
 	Events.on_enemy_hit.emit(global_position, damage, is_critic)
+	hit_animation()
 
+func hit_animation() -> void:
+	print("Enemy hit animation")
+	var tween: Tween = get_tree().create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(self, "modulate", Color(100, 100, 100, 1), 0.05)
+	tween.tween_property(self, "modulate", Color(1, 1, 1, 1), 0.1).set_delay(0.05)
+
+func dissolving_animation() -> void:
+	var tween: Tween = get_tree().create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_EXPO)
+	tween.tween_property(self, "material:shader_parameter/sensitivity", 1.0, 0.2)
+	await get_tree().create_timer(0.2).timeout
 
 func _exit_tree() -> void:
 	PhysicsServer2D.free_rid(object)

@@ -66,6 +66,5 @@ func _on_gui_input(event: InputEvent) -> void:
 		if upgrade_resource:
 			PlayerProperties.apply_upgrade(upgrade_resource)
 			Events.on_upgrade_selected.emit()
-			print("Upgrade applied: " + upgrade_resource.card_title)
 		else:
 			printerr("No upgrade resource set for this card.")

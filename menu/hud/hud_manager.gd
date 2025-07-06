@@ -10,11 +10,9 @@ func _ready() -> void:
 	Events.on_upgrade_selected.connect(hide_upgrades_menu)
 
 func show_upgrades_menu() -> void:
-	print("Showing upgrades menu")
 	upgrades_menu.refresh_upgrade_cards()
 	upgrades_menu.visible = true
 
 func hide_upgrades_menu() -> void:
-	print("Hiding upgrades menu")
 	upgrades_menu.clear_upgrade_cards()
 	upgrades_menu.visible = false

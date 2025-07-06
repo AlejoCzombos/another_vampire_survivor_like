@@ -1,12 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyqgl7aeto5de"]
+[gd_scene load_steps=5 format=3 uid="uid://cyqgl7aeto5de"]
 
 [ext_resource type="Texture2D" uid="uid://d6yyhkv3i3o6" path="res://assets/sheets/16x16_spritesheet.png" id="1_3iigx"]
 [ext_resource type="Script" uid="uid://dwkvhyewroam4" path="res://entities/enemies/enemy_base.gd" id="1_6kwvc"]
+[ext_resource type="Shader" uid="uid://deyndg45ig2jf" path="res://assets/enemies/vfx/dissolving_shader.gdshader" id="1_prjjb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yc03e"]
+resource_local_to_scene = true
+shader = ExtResource("1_prjjb")
+shader_parameter/sensitivity = 0.0
 
 [node name="EnemyBase" type="Sprite2D"]
 z_index = 30
 texture_filter = 1
 texture_repeat = 1
+material = SubResource("ShaderMaterial_yc03e")
 texture = ExtResource("1_3iigx")
 region_enabled = true
 region_rect = Rect2(0, 336, 16, 16)

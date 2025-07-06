@@ -6,7 +6,7 @@ class_name EnemyManager
 
 func _ready() -> void:
 	Events.on_enemy_died.connect(enemy_died)
-	Events.on_enemy_hit.connect(enemy_hit)
+	Events.on_enemy_hit.connect(enemy_hit) 
 
 func enemy_died(position: Vector2) -> void:
 	spawn_experience_coin(position)
@@ -25,9 +25,9 @@ func spawn_experience_coin(position: Vector2) -> void:
 
 
 func spawn_damage_label(position: Vector2, damage: float, is_critic: bool) -> void:
-	var new_damage_label = damage_label.instantiate()
+	var new_damage_label: DamageLabel  = damage_label.instantiate()
 	new_damage_label.global_position = position
-	new_damage_label.set_label(damage, is_critic)
+	new_damage_label.set_label(int(damage), is_critic)
 	get_tree().current_scene.call_deferred("add_child", new_damage_label)
 
 

@@ -4,7 +4,7 @@ var damage: float = 2.0
 var max_health: int = 6
 var health: int = 6
 var move_speed: float = 10
-var attack_cooldown: float = 2
+var attack_cooldown: float = .5
 var crit_multiplier: float = 2
 var crit_probability: float = 0.1
 
@@ -69,5 +69,4 @@ func apply_upgrade(upgrade: UpgradeResource) -> void:
 	)
 
 func is_critic_damage() -> bool:
-	return randi()
-	return true
+	return randf() < crit_probability

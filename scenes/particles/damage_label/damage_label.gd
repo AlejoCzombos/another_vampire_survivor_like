@@ -1,12 +1,12 @@
 class_name DamageLabel
 extends Node2D
 
-@export var gravity := Vector2(0, 980)
+@export var gravity: Vector2 = Vector2(0, 980)
 
-@onready var _label := $Label
-@onready var _animation_player := $AnimationPlayer
+@onready var _label: Label = $Label
+@onready var _animation_player: AnimationPlayer = $AnimationPlayer
 
-var _velocity := Vector2.ZERO
+var _velocity: Vector2 = Vector2.ZERO
 
 
 func _init() -> void:

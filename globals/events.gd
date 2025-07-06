@@ -1,6 +1,6 @@
 extends Node
 
-signal on_enemy_died(position: Vector2)
+signal on_enemy_died(enemy: EnemyBase, position: Vector2)
 signal on_enemy_hit(position: Vector2, damage: float, is_critic: bool)
 
 signal on_player_hit()
