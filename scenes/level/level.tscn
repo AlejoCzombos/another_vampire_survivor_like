@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://6hfxwxby6vys"]
+[gd_scene load_steps=19 format=4 uid="uid://6hfxwxby6vys"]
 
 [ext_resource type="PackedScene" uid="uid://bfuvcr0onkq5j" path="res://entities/player/player.tscn" id="1_nbgty"]
 [ext_resource type="PackedScene" uid="uid://cyqgl7aeto5de" path="res://entities/enemies/enemy_base.tscn" id="3_i166f"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ch0xg1dy8syqh" path="res://scenes/managers/game_manager.tscn" id="6_vpf64"]
 [ext_resource type="PackedScene" uid="uid://bw75pk5py0dfs" path="res://entities/experiences/experience_coin.tscn" id="7_wcngd"]
 [ext_resource type="PackedScene" uid="uid://kq0dy56nsyij" path="res://menu/hud/hud_manager.tscn" id="7_xv074"]
+[ext_resource type="Shader" uid="uid://deyndg45ig2jf" path="res://assets/enemies/vfx/dissolving_shader.gdshader" id="8_sytrn"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xv074"]
 load_path = "res://.godot/imported/dungeon.png-c0d3ca3da174948a7a0a03d311c9f052.ctex"
@@ -491,6 +492,31 @@ texture = ExtResource("3_sytrn")
 sources/0 = SubResource("TileSetAtlasSource_qkmgm")
 sources/1 = SubResource("TileSetAtlasSource_tf2q7")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tf2q7"]
+resource_local_to_scene = true
+shader = ExtResource("8_sytrn")
+shader_parameter/sensitivity = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pe1ox"]
+resource_local_to_scene = true
+shader = ExtResource("8_sytrn")
+shader_parameter/sensitivity = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m0bv2"]
+resource_local_to_scene = true
+shader = ExtResource("8_sytrn")
+shader_parameter/sensitivity = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b7m21"]
+resource_local_to_scene = true
+shader = ExtResource("8_sytrn")
+shader_parameter/sensitivity = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pm6rs"]
+resource_local_to_scene = true
+shader = ExtResource("8_sytrn")
+shader_parameter/sensitivity = 0.0
+
 [node name="Level" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_nbgty")]
@@ -520,18 +546,23 @@ spawn_manager = NodePath("../SpawnManager")
 [node name="Enemies" type="Node" parent="."]
 
 [node name="EnemyBase5" parent="Enemies" instance=ExtResource("3_i166f")]
+material = SubResource("ShaderMaterial_tf2q7")
 position = Vector2(132, -16)
 
 [node name="EnemyBase" parent="Enemies" instance=ExtResource("3_i166f")]
+material = SubResource("ShaderMaterial_pe1ox")
 position = Vector2(140, -42)
 
 [node name="EnemyBase2" parent="Enemies" instance=ExtResource("3_i166f")]
+material = SubResource("ShaderMaterial_m0bv2")
 position = Vector2(159, -31)
 
 [node name="EnemyBase3" parent="Enemies" instance=ExtResource("3_i166f")]
+material = SubResource("ShaderMaterial_b7m21")
 position = Vector2(181, -19)
 
 [node name="EnemyBase4" parent="Enemies" instance=ExtResource("3_i166f")]
+material = SubResource("ShaderMaterial_pm6rs")
 position = Vector2(147, -9)
 
 [node name="Experiences" type="Node" parent="."]
